@@ -37,13 +37,15 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-
         $post = $request->post_id;
         $data = $request->validate([
             'comment'=>'required',
         ]);
-        $comment = Comment::create($data);
-        Post::find($post)->comments()->attach([$comment->id]);
+        Comment::create([
+            'comment'=> $data['comment'],
+            'post_id'=>$post
+        ]);
+//        Post::find($post)->comments()->attach($post);
 
         return redirect('profile/'.auth()->user()->id);
 
@@ -91,7 +93,6 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment,Request $request)
     {
-//        $this->authorize( 'delete' , $comment);
          $comment_id = $request->comment_id;
         Comment::where('id',$comment_id)->delete();
         return response()->json();
