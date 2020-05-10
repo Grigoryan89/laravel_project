@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;
 
 class PostsController extends Controller
 {
@@ -104,6 +107,13 @@ class PostsController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+
+        $image_path = "storage/".$post->image;
+        if (file_exists($image_path)) {
+            @unlink($image_path);
+        }
+        $post->delete();
+        Session::flash('flash_message','File successfully Deleting');
+        return redirect('/profile/'.$post->user->id);
     }
 }

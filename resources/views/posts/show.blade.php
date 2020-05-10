@@ -12,15 +12,30 @@
                 <div>
                     <div class="d-flex align-items-center">
                         <div>
-                            <img src="{{ $post->user->profile->profileImage() }}" class="w-100 rounded-circle" style="max-width: 50px">
+                            <img src="{{ $post->user->profile->profileImage() }}" class="w-100 rounded-circle"
+                                 style="max-width: 50px">
                         </div>
                         <div class="pl-3 d-flex">
-                            <div class="font-weight-bold"><a href="/profile/{{ $post->user->id }}">{{ $post->user->username }}</a></div>
-                            <div class="pl-3"><a href="">Follow</a></div>
+                            <div class="font-weight-bold"><a
+                                    href="/profile/{{ $post->user->id }}">{{ $post->user->username }}</a>
+                            </div>
+                            <div class="pl-3">
+                                <form action="/post/{{ $post->id }}" method="POST" enctype="multipart/form-data">
+                                    @method('DELETE')
+                                    @csrf
+
+                                    <button class="btn btn-danger" type="submit">DELETE</button>
+
+                                </form>
+                            </div>
                         </div>
                     </div>
                     <hr>
-                    <p><span class="font-weight-bold"><a href="/profile/{{ $post->user->id }}">{{ $post->user->username }}</a></span> {{ $post->caption }}</p>
+                    <p><span class="font-weight-bold"><a
+                                href="/profile/{{ $post->user->id }}">{{ $post->user->username }}</a></span></p>
+                    <h3><span>Title::  {{ $post->title }}</span></h3>
+                    <hr>
+                    <h3><span>Description::  {{ $post->description }}</span></h3>
 
                 </div>
             </div>

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container">
         <div class="row justify-content-center">
 
@@ -50,9 +51,9 @@
                         <button type="submit" class="btn btn-primary">
                             Create
                         </button>
-                        <button class="btn btn-default">
+                        <a href="/profile/{{auth()->user()->id}}" class="btn btn-default">
                             Cancel
-                        </button>
+                        </a>
                     </div>
 
                 </form>

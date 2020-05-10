@@ -8,7 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        
+
 
         <!-- Styles -->
         <style>
@@ -62,7 +62,7 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
- 
+
         </style>
     </head>
     <body>
@@ -70,7 +70,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/profile') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 

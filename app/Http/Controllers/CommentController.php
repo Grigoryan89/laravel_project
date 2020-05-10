@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
-use App\Profile;
+use App\Post;
+use App\User;
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('profiles.index');
+        //
     }
 
     /**
@@ -37,70 +38,62 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
 
+        $post = $request->post_id;
+        $data = $request->validate([
+            'comment'=>'required',
+        ]);
+        $comment = Comment::create($data);
+        Post::find($post)->comments()->attach([$comment->id]);
+
+        return redirect('profile/'.auth()->user()->id);
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Profile  $profile
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show(Profile $profile)
+    public function show(Comment $comment)
     {
-        $comments = Comment::all();
-        return view('profiles.show',compact('profile','comments'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Profile  $profile
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Profile $profile)
+    public function edit(Comment $comment)
     {
-        return view('profiles.edit',compact('profile'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Profile  $profile
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Profile $profile)
+    public function update(Request $request, Comment $comment)
     {
-
-        $this->authorize( 'update' , $profile);
-
-        $data = $request->validate([
-            'title'=>'required',
-            'description'=>'required',
-            'url'=>'url',
-            'image'=>''
-        ]);
-        if ($request->hasFile('image')){
-            $imagePath = request('image')->store('profile','public');
-
-            auth()->user()->profile()->update(array_merge(
-                $data,
-                ['image'=>$imagePath]
-            ));
-        }
-
-
-        return redirect ('profile/'.auth()->user()->id);
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Profile  $profile
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Profile $profile)
+    public function destroy(Comment $comment,Request $request)
     {
-        //
+//        $this->authorize( 'delete' , $comment);
+         $comment_id = $request->comment_id;
+        Comment::where('id',$comment_id)->delete();
+        return response()->json();
     }
 }
