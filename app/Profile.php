@@ -10,8 +10,15 @@ class Profile extends Model
 
     public function profileImage()
     {
-      $imagePath = ($this->image) ? $this->image : 'profile/Z0MWmXMCjFOKoakp8jRmCmqR2bMcxyN0KYZM8Sq9.png';
-      return "/storage/".$imagePath;
+      $imagePath = ($this->image) ? $this->image : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png';
+       if ($this->image)
+       {
+           return "/storage/".$imagePath;
+       }
+       else{
+           return $imagePath;
+       }
+
     }
 
     public function user()
