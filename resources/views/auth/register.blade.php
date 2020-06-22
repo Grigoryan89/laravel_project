@@ -1,77 +1,88 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+    <div class="container">
 
-<div class="row justify-content-center">
-        <div class="col-md-4">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
 
                 <div class="card-header">{{ __('Register') }}</div>
                 <div role="tabpanel" class="tab-pane" id="register">
-                <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}">
                         @csrf
-            <div class="form-group ">
-                <div class="input-group">
-                    <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Name" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                        <div class="form-group ">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                                       placeholder="Name" name="name" value="{{ old('name') }}" required
+                                       autocomplete="name" autofocus>
 
                                 @error('name')
-                                    <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                </div>
-            </div>
-            <div class="form-group ">
-                <div class="input-group">
-                    <div class="input-group-addon"><i class="fa fa-male"></i></div>
-                   <input id="username" type="username" class="form-control @error('username') is-invalid @enderror" placeholder="User Name" name="username" value="{{ old('username') }}" required autocomplete="username">
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-male"></i></div>
+                                <input id="username" type="username"
+                                       class="form-control @error('username') is-invalid @enderror"
+                                       placeholder="User Name" name="username" value="{{ old('username') }}" required
+                                       autocomplete="username">
 
                                 @error('username')
-                                    <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                </div>
-            </div>
-            <div class="form-group ">
-                <div class="input-group">
-                    <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                  <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" name="email" value="{{ old('email') }}" required autocomplete="email">
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                       placeholder="Email" name="email" value="{{ old('email') }}" required
+                                       autocomplete="email">
 
                                 @error('email')
-                                    <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                </div>
-            </div>
-            <div class="form-group ">
-                <div class="input-group">
-                    <div class="input-group-addon"><i class="fa fa-lock"></i></div>
-                   <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password" required autocomplete="new-password">
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                <input id="password" type="password"
+                                       class="form-control @error('password') is-invalid @enderror"
+                                       placeholder="Password" name="password" required autocomplete="new-password">
 
                                 @error('password')
-                                    <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                </div>
-            </div>
-            <div class="form-group ">
-                <div class="input-group">
-                    <div class="input-group-addon"><i class="fa fa-lock"></i></div>
-                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required autocomplete="new-password">
-                </div>
-            </div>
-            <input type="submit" value="Register" class="btn btn-success btn-custom">
-        </form>
-    </div>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                <input id="password-confirm" type="password" class="form-control"
+                                       name="password_confirmation" placeholder="Confirm Password" required
+                                       autocomplete="new-password">
+                            </div>
+                        </div>
 
+                        <input type="submit" value="Register" class="btn btn-success btn-custom">
+                    </form>
+                            <a href="{{url('/redirect')}}" class="btn btn-primary">Login with Facebook</a>
+                </div>
+
+            </div>
         </div>
-    </div>
-
-
 
 
     <!-- <div class="row justify-content-center">
@@ -83,8 +94,8 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+        <div class="form-group row">
+            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -137,15 +148,15 @@
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div> -->
+        </button>
+    </div>
 </div>
+</form>
+</div>
+</div>
+</div>
+</div> -->
+    </div>
 @endsection
 
 

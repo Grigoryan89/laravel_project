@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 
 
+
 Route::group(['middleware' => ['auth', 'admin']], function () {
 
     Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
@@ -56,4 +57,5 @@ Route::group(['middleware' => ['auth', 'active_user']], function () {
     });
 });
 
-
+Route::get('/redirect', 'SocialAuthFacebookController@redirect');
+Route::get('/callback', 'SocialAuthFacebookController@callback');
